@@ -27,8 +27,8 @@ export class FeatureFlagsStack {
         const fn = new cdk.aws_lambda.Function(stack, projectName + "Lambda", {
             layers: [appConfig],
             runtime: cdk.aws_lambda.Runtime.NODEJS_18_X,
-            handler: "lambda_handler.handler",
-            code: cdk.aws_lambda.Code.fromAsset("../lambda_handler"),
+            handler: "index.handler",
+            code: cdk.aws_lambda.Code.fromAsset("../lambda-handler"),
         })
 
         fn.role?.addManagedPolicy(cdk.aws_iam.ManagedPolicy.fromAwsManagedPolicyName("service-role/StartConfigurationSession"))
