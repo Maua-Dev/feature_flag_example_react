@@ -6,7 +6,7 @@ import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as route53Targets from 'aws-cdk-lib/aws-route53-targets';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
-import { FeatureFlagsStack } from './feature-flags-stack';
+import { FeatureFlagsStack } from '../feature-flags-stack';
 
 export class IacStack extends cdk.Stack {
   constructor(scope: Construct, id: string,  props?: cdk.StackProps) {
