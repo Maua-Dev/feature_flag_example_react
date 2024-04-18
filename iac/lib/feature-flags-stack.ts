@@ -1,6 +1,5 @@
 import * as cdk from "aws-cdk-lib";
 import { LayerVersion } from "aws-cdk-lib/aws-lambda";
-import path = require("path");
 
 export class FeatureFlagsStack {    
     constructor(stack : cdk.Stack) {
@@ -29,7 +28,7 @@ export class FeatureFlagsStack {
             layers: [appConfig],
             runtime: cdk.aws_lambda.Runtime.NODEJS_18_X,
             handler: "lambda-handler.handler",
-            code: cdk.aws_lambda.Code.fromAsset(path.join(__dirname, "../../lambda")),
+            code: cdk.aws_lambda.Code.fromAsset("../lambda"),
         })
 
         fn.role?.addManagedPolicy(cdk.aws_iam.ManagedPolicy.fromAwsManagedPolicyName("service-role/StartConfigurationSession"))
