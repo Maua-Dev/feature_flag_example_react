@@ -1,14 +1,12 @@
 import * as cdk from 'aws-cdk-lib';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
-import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import { Certificate } from 'aws-cdk-lib/aws-certificatemanager';
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as route53Targets from 'aws-cdk-lib/aws-route53-targets';
 import * as iam from 'aws-cdk-lib/aws-iam';
-import * as lambda from 'aws-cdk-lib/aws-lambda';
-
 import { Construct } from 'constructs';
+import { FeatureFlagsStack } from './feature-flags-stack';
 
 export class IacStack extends cdk.Stack {
   constructor(scope: Construct, id: string,  props?: cdk.StackProps) {
@@ -19,6 +17,8 @@ export class IacStack extends cdk.Stack {
     const alternativeDomain = process.env.ALTERNATIVE_DOMAIN_NAME || 'vite_react_template.devmaua.com';
     const hostedZoneIdValue = process.env.HOSTED_ZONE_ID || 'Z1UJRXOUMOOFQ8';
     const projectName = process.env.PROJECT_NAME || 'ViteReactTemplateFront';
+
+    new FeatureFlagsStack(this)
 
     const s3Bucket = new s3.Bucket(this, projectName + 'Bucket' + stage, {
       versioned: true,
